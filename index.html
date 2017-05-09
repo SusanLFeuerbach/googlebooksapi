@@ -9,7 +9,25 @@
     </head>
 
     <body>
-    
+        <br>
+         <br>
+        <form action="index.html" method="get">
+            Search by ISBN (ISBN-10 or ISBN-13)
+            <input type="text" name="isbn">
+            <button type="submit">Search for book</button>
+            <br>
+            <br>
+        
+        </form>
+        
+        <a href="index.html?isbn=0307575853">Interview with the Vampire</a>
+        <br>
+        <a href="index.html?isbn=0345803655">Prince Lestat</a>
+        <br>
+        <a href="index.html?isbn=0345313860">The Vampire Lestat</a>
+        <br>
+        <a href="index.html?isbn=0385353790">Prince Lestat and the Realms of Atlantis</a>
+        
     <h1></h1>
       <img src="" id="bookThumb">  
         <p></p>
@@ -21,10 +39,23 @@
         Catagories: <span id="bookCatagories"></span>
         <p></p>
         Published: <span id="publishDate"></span>
+        <p></p>
+        Text Snippet: <span id="textAnneRice"></span>
+        <p></p>
+<!--        Price: <span id="bookPrice"></span>-->
+        <p></p>
+        Publisher: <span id="publisher"></span>
+        <p></p>
+        <p>Buy Link:<span id="buyLink"></span></p>
+        <p></p>
+        Price: <span id="bookPrice"></span>
+     
         
     <script>
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://www.googleapis.com/books/v1/volumes?q=isbn:0307575853", false);
+        //0307575853
+        var queryString = document.URL.substring( document.URL.indexOf('=') + 1 );
+        xhr.open("GET", "https://www.googleapis.com/books/v1/volumes?q=isbn:" + queryString, false);
         xhr.send();
         console.log(xhr.status); // if this returns 200, then you are in like Flynn
         var bookObject = JSON.parse(xhr.responseText);
@@ -37,12 +68,18 @@
         $("#pageCount").text(bookObject.items[0].volumeInfo.pageCount);
         $("#bookThumb").attr("src",bookObject.items[0].volumeInfo.imageLinks.thumbnail);
         $("#bookCatagories").text(bookObject.items[0].volumeInfo.categories[0]);
-        $("#publishDate").text(bookObject.items[0].volumeInfo.publishedDate[0]);
-                               
+        $("#publishDate").text(bookObject.items[0].volumeInfo.publishedDate);
+        $("#textAnneRice").text(bookObject.items[0].searchInfo.textSnippet);           
+        $("#publisher").text(bookObject.items[0].volumeInfo.publisher);
+        $("#buyLink").text(bookObject.items[0].saleInfo.buyLink);
+        $("#bookPrice").text(bookObject.items[0].saleInfo.listPrice.amount); 
+                        
                             
         
     </script>
 
+        
+        
     </body>
 
 </html>
