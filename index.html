@@ -9,6 +9,17 @@
     </head>
 
     <body>
+        <br>
+         <br>
+        <form action="index.html" method="get">
+            Search by ISBN (ISBN-10 or ISBN-13)
+            <input type="text" name="isbn">
+            <button type="submit">Search for book</button>
+            <br>
+            <br>
+        
+        </form>
+        
         <a href="index.html?isbn=0307575853">Interview with the Vampire</a>
         <br>
         <a href="index.html?isbn=0345803655">Prince Lestat</a>
@@ -61,8 +72,8 @@
         $("#textAnneRice").text(bookObject.items[0].searchInfo.textSnippet);           
         $("#publisher").text(bookObject.items[0].volumeInfo.publisher);
         $("#buyLink").text(bookObject.items[0].saleInfo.buyLink);
-        $("#bookPrice").text(bookObject.items[0].saleInfo.listPrice.amount);  
-                               
+        $("#bookPrice").text(bookObject.items[0].saleInfo.listPrice.amount); 
+                        
                             
         
     </script>
