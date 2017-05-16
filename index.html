@@ -17,17 +17,19 @@
     </head>
 
     <body>
-    
+    <main>
         <br>
         <form action="index.html" method="get">
-            Search by ISBN (ISBN-10 or ISBN-13)
-            <input type="text" name="isbn">
+            <p class="searchText">Search by ISBN (ISBN-10 or ISBN-13)</p>
+            <input type="text" name="isbn" class="inputBox">
+			<br>
             <button type="submit">Search for book</button>
         <br>
         <br>
         
         </form>
-        
+		
+        <div id="vamLinks">
         <a href="index.html?isbn=0307575853">Interview with the Vampire</a>
         <br>
         <a href="index.html?isbn=0345803655">Prince Lestat</a>
@@ -35,12 +37,12 @@
         <a href="index.html?isbn=0345313860">The Vampire Lestat</a>
         <br>
         <a href="index.html?isbn=0385353790">Prince Lestat and the Realms of Atlantis</a>
-        
+        </div>
     
     
-    <main>
+    
     <section class="section group">
-        <img src="" id="bookThumb">
+        <img src="" id="bookThumb" class="bookCovers">
         
         <h4>Author</h4>
         <p><span id="authorName"></span></p>
@@ -69,7 +71,7 @@
     </section>
     
  
-</main>
+
     
 <footer class="section group">
 
@@ -81,7 +83,7 @@
 <!--    <a href="index.html?isbn=0307575853">Interview with the Vampire</a>-->
       
 </footer>
-    
+ </main>   
         
     <script>
         var xhr = new XMLHttpRequest();
@@ -98,7 +100,7 @@
         $("#authorName").text(bookObject.items[0].volumeInfo.authors[0]);
         $("#bookDescription").text(bookObject.items[0].volumeInfo.description);
         $("#pageCount").text(bookObject.items[0].volumeInfo.pageCount);
-        $("#bookThumb").attr("src",bookObject.items[0].volumeInfo.imageLinks.thumbnail);
+  		$("#bookThumb").attr("src",bookObject.items[0].volumeInfo.imageLinks.thumbnail);
         $("#bookCatagories").text(bookObject.items[0].volumeInfo.categories[0]);
         $("#publishDate").text(bookObject.items[0].volumeInfo.publishedDate);
         $("#textAnneRice").text(bookObject.items[0].searchInfo.textSnippet);           
@@ -106,7 +108,10 @@
         $("#buyLink").text(bookObject.items[0].saleInfo.buyLink);
         $("#bookPrice").text(bookObject.items[0].saleInfo.listPrice.amount); 
                         
-                            
+       
+//		if (bookPrice === null) {
+//			null = "unavailable";
+//		}                   
         
     </script>
 
