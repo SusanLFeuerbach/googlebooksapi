@@ -122,6 +122,10 @@ button {
     border: 10px white solid;
 }
 
+footer p {
+    display: none;
+}
+
 
 /*
 TABLET STYLESHEET 
